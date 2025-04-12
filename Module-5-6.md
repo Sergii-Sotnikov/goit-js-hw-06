@@ -194,3 +194,113 @@ const inDescendingScoreOrder = students.toSorted(
 const inAlphabeticalOrder = students.toSorted((firstStudent, secondStudent) =>
 firstStudent.name.localeCompare(secondStudent.name)
 );
+
+//!===================================================//!===================================================
+Прототипи
+
+const animal = {
+legs: 4,
+};
+
+const dog = Object.create(animal);
+dog.name = "Mango";
+
+console.log(dog); // { name: "Mango", [[Prototype]]: animal }
+
+//!===================================================
+Перевірка прототипу
+objA.isPrototypeOf(objB)
+
+const customer = {
+username: "Jacob"
+};
+
+const animal = {
+legs: 4
+};
+
+const dog = Object.create(animal);
+dog.name = "Mango";
+
+console.log(animal.isPrototypeOf(dog)); // true
+console.log(dog.isPrototypeOf(animal)); // false
+console.log(customer.isPrototypeOf(dog)); // false
+
+//!===================================================
+Власні і невласні властивості
+
+const animal = {
+legs: 4,
+};
+const dog = Object.create(animal);
+dog.name = "Mango";
+
+console.log(dog.hasOwnProperty("name")); // true
+console.log(dog.hasOwnProperty("legs")); // false
+
+//!===================================================
+Перебір власних властивостей
+Методи Object.keys(obj) і Object.values(obj) повертають масив тільки власних ключів або значень тільки власних властивостей об'єкта obj
+
+const animal = { legs: 4 };
+const dog = Object.create(animal);
+dog.name = "Mango";
+
+console.log(Object.keys(dog)); // ["name"]
+console.log(Object.values(dog)); // ["Mango"]
+
+for(const key of Object.keys(dog)) {
+console.log(key); // "name"
+}
+
+//!===================================================//!===================================================
+Класи
+Оголошення класу
+class User {
+// Тіло класу
+}
+
+створити його екземпляр
+class User {
+// Тіло класу
+}
+
+const mango = new User();
+console.log(mango); // {}
+
+const poly = new User();
+console.log(poly); // {}
+
+//!===================================================
+Конструктор класу
+class User {
+constructor(name, email) {
+// Ініціалізація властивостей екземпляра
+this.name = name;
+this.email = email;
+}
+}
+
+const mango = new User("Mango", "mango@mail.com");
+console.log(mango); // { name: 'Mango', email: 'mango@mail.com' }
+
+const poly = new User("Poly", "poly@mail.com");
+console.log(poly); // { name: 'Poly', email: 'poly@mail.com' }
+
+//!===================================================
+Об'єкт параметрів
+
+class User {
+constructor(params) {
+this.name = params.name;
+this.email = params.email;
+}
+}
+
+const mango = new User({
+name: "Mango",
+email: "mango@mail.com",
+});
+
+console.log(mango);
+// { name: "Mango", email: "mango@mail.com" }
